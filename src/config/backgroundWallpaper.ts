@@ -1,8 +1,11 @@
 import type { BackgroundWallpaperConfig } from "@/types/backgroundWallpaper";
+import { loadSiteSettings } from "../utils/settings-loader";
+
+const settings = loadSiteSettings();
 
 export const backgroundWallpaper: BackgroundWallpaperConfig = {
-	// 壁纸模式："banner" 横幅壁纸，"fullscreen" 全屏壁纸，"overlay" 全屏透明，"none" 纯色背景无壁纸
-	mode: "banner",
+	// 壁纸模式 — 📌 可通过后台 CMS → 站点设置 在线修改
+	mode: (settings.wallpaper_mode as "banner" | "fullscreen" | "overlay" | "none") || "banner",
 	// 是否启用背景视频播放，配置后将在导航栏显示视频播放按钮
 	playerEnable: true,
 	/**

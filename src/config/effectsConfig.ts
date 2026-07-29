@@ -1,10 +1,13 @@
 import type { SakuraConfig } from "../types/effectsConfig";
+import { loadSiteSettings } from "../utils/settings-loader";
+
+const settings = loadSiteSettings();
 
 // 特效配置 - 集中管理所有动画特效
 
 export const sakuraConfig: SakuraConfig = {
-	// 是否启用樱花特效
-	enable: false,
+	// 是否启用樱花特效 — 📌 可通过后台 CMS → 站点设置 在线修改
+	enable: settings.sakura_enable ?? false,
 
 	// 樱花数量
 	sakuraNum: 21,

@@ -1,4 +1,7 @@
 import type { SidebarLayoutConfig } from "../types/sidebarConfig";
+import { loadSiteSettings } from "../utils/settings-loader";
+
+const settings = loadSiteSettings();
 
 /**
  * 侧边栏布局配置
@@ -7,16 +10,16 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
 	// 是否启用侧边栏功能
 	enable: true,
 
-	// 侧边栏位置：
+	// 侧边栏位置 — 📌 可通过后台 CMS → 站点设置 在线修改
 	// left: 仅显示左侧边栏
 	// right: 仅显示右侧边栏
 	// both: 双侧边栏，1280px以上同时显示左右，769-1279px根据tabletSidebar配置显示其中一侧
-	position: "both",
+	position: (settings.sidebar_position as "left" | "right" | "both") || "both",
 
 	// 平板端(769-1279px)显示哪侧侧边栏，仅position为both时生效
 	// left: 平板端显示左侧边栏
 	// right: 平板端显示右侧边栏
-	tabletSidebar: "left",
+	tabletSidebar: (settings.sidebar_tablet_side as "left" | "right") || "left",
 
 	// 文章详情页隐藏侧边栏，设为 true 则只在首页等非文章页显示
 	hideSidebarOnPostPage: false,

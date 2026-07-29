@@ -1,34 +1,31 @@
 # ============================================
 # Firefly + Decap CMS 配置
-# 后台地址：你的域名/admin/
+# 后台地址：https://你的域名/admin/
 # ============================================
 
 backend:
   name: github
   repo: 131huahua/my-firefly-blog
-  branch: main
-  # 部署到 Vercel 后，将下面改成你的域名
+  branch: master
+  # 部署到 Vercel 后改成你的域名
   base_url: https://YOUR_SITE.vercel.app
   auth_endpoint: api/auth
 
-# 上传的图片保存位置
+# 上传图片保存位置
 media_folder: public/assets/images
 public_folder: /assets/images
 
-# 站点地址（部署后改成你的域名）
 site_url: https://YOUR_SITE.vercel.app
 display_url: https://YOUR_SITE.vercel.app
 
-# 语言
 locale: zh_Hans
-
-# Logo
 logo_url: /assets/images/firefly.png
 
 # ============================================
-# 文章集合
+# 内容集合
 # ============================================
 collections:
+  # ── 文章 ──
   - name: posts
     label: 📝 文章
     label_singular: 文章
@@ -39,10 +36,7 @@ collections:
     editor:
       preview: false
     fields:
-      - label: 标题
-        name: title
-        widget: string
-        hint: 文章标题
+      - { label: 标题, name: title, widget: string }
       - label: 发布日期
         name: published
         widget: datetime
@@ -59,86 +53,35 @@ collections:
         date_format: "YYYY-MM-DD"
         time_format: "HH:mm:ss"
         picker_utc: false
-      - label: 草稿
-        name: draft
-        widget: boolean
-        default: false
-        hint: 草稿不会出现在博客中
-      - label: 摘要
-        name: description
-        widget: text
-        required: false
-        hint: 文章简短描述，用于列表展示
-      - label: 封面图
-        name: image
-        widget: image
-        required: false
-        hint: "留空使用随机图，或输入 'api' 使用随机API"
-      - label: 标签
-        name: tags
-        widget: list
-        required: false
-        default: []
-        hint: 按回车添加标签
-      - label: 分类
-        name: category
-        widget: string
-        required: false
-        hint: 文章分类，留空则无分类
+      - { label: 草稿, name: draft, widget: boolean, default: false }
+      - { label: 摘要, name: description, widget: text, required: false }
+      - { label: 封面图, name: image, widget: image, required: false, hint: "留空用随机图，或填 api 用随机API" }
+      - { label: 标签, name: tags, widget: list, required: false, default: [] }
+      - { label: 分类, name: category, widget: string, required: false }
       - label: 语言
         name: lang
         widget: select
         required: false
         default: ""
         options:
-          - { label: "跟随站点设置", value: "" }
-          - { label: "简体中文", value: "zh-CN" }
-          - { label: "繁体中文", value: "zh-TW" }
-          - { label: "English", value: "en" }
-          - { label: "日本語", value: "ja" }
-          - { label: "한국어", value: "ko" }
-          - { label: "Русский", value: "ru" }
-      - label: 置顶
-        name: pinned
-        widget: boolean
-        default: false
-      - label: 允许评论
-        name: comment
-        widget: boolean
-        default: true
-      - label: 作者
-        name: author
-        widget: string
-        required: false
-      - label: 原文链接
-        name: sourceLink
-        widget: string
-        required: false
-      - label: 许可证名称
-        name: licenseName
-        widget: string
-        required: false
-      - label: 许可证链接
-        name: licenseUrl
-        widget: string
-        required: false
-      - label: 加密密码
-        name: password
-        widget: string
-        required: false
-        hint: 设置后文章需密码访问，留空则不加密
-      - label: 密码提示
-        name: passwordHint
-        widget: string
-        required: false
-      - label: 正文
-        name: body
-        widget: markdown
-        hint: 支持 Markdown 语法、代码高亮、Mermaid 图表等
+          - { label: 跟随站点, value: "" }
+          - { label: 简体中文, value: "zh-CN" }
+          - { label: 繁體中文, value: "zh-TW" }
+          - { label: English, value: "en" }
+          - { label: 日本語, value: "ja" }
+          - { label: 한국어, value: "ko" }
+          - { label: Русский, value: "ru" }
+      - { label: 置顶, name: pinned, widget: boolean, default: false }
+      - { label: 允许评论, name: comment, widget: boolean, default: true }
+      - { label: 作者, name: author, widget: string, required: false }
+      - { label: 原文链接, name: sourceLink, widget: string, required: false }
+      - { label: 许可证名称, name: licenseName, widget: string, required: false }
+      - { label: 许可证链接, name: licenseUrl, widget: string, required: false }
+      - { label: 加密密码, name: password, widget: string, required: false }
+      - { label: 密码提示, name: passwordHint, widget: string, required: false }
+      - { label: 正文, name: body, widget: markdown }
 
-  # ============================================
-  # 独立页面（关于、友链、留言板）
-  # ============================================
+  # ── 独立页面 ──
   - name: spec
     label: 📄 独立页面
     label_singular: 页面
@@ -148,18 +91,10 @@ collections:
     editor:
       preview: false
     fields:
-      - label: 标题
-        name: title
-        widget: string
-        required: false
-        hint: "页面标题（可选，Firefly 会在页面中自动显示）"
-      - label: 内容
-        name: body
-        widget: markdown
+      - { label: 标题, name: title, widget: string, required: false }
+      - { label: 内容, name: body, widget: markdown }
 
-  # ============================================
-  # 动态（说说/碎碎念）
-  # ============================================
+  # ── 动态 ──
   - name: dynamic
     label: 💬 动态
     label_singular: 动态
@@ -178,21 +113,12 @@ collections:
         date_format: "YYYY-MM-DD"
         time_format: "HH:mm:ss"
         picker_utc: false
-      - label: 置顶
-        name: pinned
-        widget: boolean
-        default: false
-      - label: 位置
-        name: location
-        widget: string
-        required: false
-      - label: 内容
-        name: body
-        widget: markdown
-        hint: 支持 Markdown，可以发图片和链接
+      - { label: 置顶, name: pinned, widget: boolean, default: false }
+      - { label: 位置, name: location, widget: string, required: false }
+      - { label: 内容, name: body, widget: markdown }
 
   # ============================================
-  # 站点设置
+  # ⚙️ 站点设置 — 零代码改 UI
   # ============================================
   - name: settings
     label: ⚙️ 站点设置
@@ -200,48 +126,153 @@ collections:
       preview: false
     files:
       - name: site
-        label: 基本信息
+        label: 全部设置
         file: src/content/settings/site.json
         fields:
-          - label: 站点标题
-            name: title
-            widget: string
-            hint: 显示在浏览器标签页的标题
-          - label: 站点副标题
-            name: subtitle
-            widget: string
-            required: false
-          - label: 站点描述
-            name: description
-            widget: text
-            required: false
-          - label: 站点URL
-            name: site_url
-            widget: string
-            hint: "完整的站点地址，如 https://example.com"
-          - label: 博主名字
-            name: profile_name
-            widget: string
-            hint: 显示在侧边栏的名字
-          - label: 个人简介
-            name: profile_bio
-            widget: text
-            required: false
-            hint: 侧边栏签名
-          - label: 头像
-            name: profile_avatar
-            widget: image
-            required: false
-            hint: 上传到资源库后选择
-          - label: GitHub 用户名
-            name: github
-            widget: string
-            required: false
-          - label: 邮箱
-            name: email
-            widget: string
-            required: false
-          - label: QQ群号
-            name: qq
-            widget: string
-            required: false
+          # ── 基本信息 ──
+          - label: 🏠 基本信息
+            name: basic_info
+            widget: object
+            fields:
+              - { label: 站点标题, name: title, widget: string, hint: 浏览器标签页和首页标题 }
+              - { label: 站点副标题, name: subtitle, widget: string, hint: 显示在标题下方的副标题 }
+              - { label: 站点描述, name: description, widget: text, hint: SEO描述，搜索引擎展示用 }
+              - { label: 站点地址, name: site_url, widget: string, hint: "https://你的域名" }
+
+          # ── 博主信息 ──
+          - label: 👤 博主信息
+            name: profile
+            widget: object
+            fields:
+              - { label: 博主名字, name: profile_name, widget: string, hint: 侧边栏显示的名字 }
+              - { label: 个人简介, name: profile_bio, widget: text, hint: 侧边栏签名 }
+              - { label: 头像, name: profile_avatar, widget: image, hint: 上传到图库后选择 }
+
+          # ── 社交链接 ──
+          - label: 🔗 社交链接
+            name: social
+            widget: object
+            fields:
+              - { label: GitHub 用户名, name: github, widget: string, hint: 留空不显示GitHub图标 }
+              - { label: 邮箱, name: email, widget: string, hint: 留空不显示邮箱图标 }
+              - { label: QQ号, name: qq, widget: string, hint: 留空不显示QQ图标 }
+
+          # ── 导航栏 ──
+          - label: 🧭 导航栏
+            name: navbar
+            widget: object
+            fields:
+              - { label: 导航栏标题, name: nav_bar_title, widget: string, hint: 显示在导航栏左侧的文字 }
+              - { label: Logo 图片, name: nav_bar_logo, widget: image, required: false, hint: 可选，留空使用默认Logo }
+
+          # ── 主题外观 ──
+          - label: 🎨 主题外观
+            name: theme
+            widget: object
+            fields:
+              - label: 主题色
+                name: theme_hue
+                widget: number
+                default: 165
+                value_type: int
+                min: 0
+                max: 360
+                hint: 色相 0-360。0=红 120=绿 240=蓝 300=紫
+              - label: 默认颜色模式
+                name: theme_default_mode
+                widget: select
+                default: "system"
+                options:
+                  - { label: 跟随系统, value: "system" }
+                  - { label: 浅色, value: "light" }
+                  - { label: 深色, value: "dark" }
+              - label: 文章列表布局
+                name: post_list_layout
+                widget: select
+                default: "list"
+                options:
+                  - { label: 列表模式（单列）, value: "list" }
+                  - { label: 网格模式（多列）, value: "grid" }
+              - label: 侧边栏位置
+                name: sidebar_position
+                widget: select
+                default: "both"
+                options:
+                  - { label: 双侧边栏, value: "both" }
+                  - { label: 仅左侧, value: "left" }
+                  - { label: 仅右侧, value: "right" }
+              - label: 平板端显示哪侧
+                name: sidebar_tablet_side
+                widget: select
+                default: "left"
+                options:
+                  - { label: 左侧, value: "left" }
+                  - { label: 右侧, value: "right" }
+              - label: 卡片边框阴影
+                name: card_border
+                widget: boolean
+                default: false
+                hint: 开启后卡片更有立体感
+              - label: 卡片跟随主题色
+                name: card_follow_theme
+                widget: boolean
+                default: false
+              - label: 文章简介行数
+                name: post_list_description_lines
+                widget: number
+                default: 2
+                value_type: int
+                min: 0
+                max: 10
+              - label: 每页文章数
+                name: post_per_page
+                widget: number
+                default: 10
+                value_type: int
+                min: 1
+                max: 50
+
+          # ── 壁纸 ──
+          - label: 🖼️ 壁纸
+            name: wallpaper
+            widget: object
+            fields:
+              - label: 壁纸模式
+                name: wallpaper_mode
+                widget: select
+                default: "banner"
+                options:
+                  - { label: 横幅壁纸, value: "banner" }
+                  - { label: 全屏壁纸, value: "fullscreen" }
+                  - { label: 全屏透明, value: "overlay" }
+                  - { label: 纯色背景, value: "none" }
+              - { label: 壁纸图片URL, name: wallpaper_url, widget: string, required: false, hint: "本地路径或远程URL，留空使用默认壁纸" }
+
+          # ── 页面开关 ──
+          - label: 📑 页面开关
+            name: pages
+            widget: object
+            fields:
+              - { label: 友链页面, name: page_friends, widget: boolean, default: true }
+              - { label: 留言板, name: page_guestbook, widget: boolean, default: true }
+              - { label: 打赏页面, name: page_sponsor, widget: boolean, default: true }
+              - { label: 相册, name: page_gallery, widget: boolean, default: true }
+              - { label: 番组计划, name: page_bangumi, widget: boolean, default: true }
+              - { label: 追番页面, name: page_anime, widget: boolean, default: true }
+              - { label: 动态页面, name: page_dynamic, widget: boolean, default: true }
+              - { label: 分类导航栏, name: category_bar, widget: boolean, default: true }
+              - { label: 归档折叠, name: fold_article, widget: boolean, default: true, hint: 折叠旧年份文章 }
+
+          # ── 特效 ──
+          - label: ✨ 特效
+            name: effects
+            widget: object
+            fields:
+              - { label: 樱花飘落, name: sakura_enable, widget: boolean, default: false, hint: 开启后页面有樱花飘落动画 }
+
+          # ── 页脚 ──
+          - label: 📌 页脚
+            name: footer
+            widget: object
+            fields:
+              - { label: 启用自定义页脚, name: footer_enable, widget: boolean, default: false }

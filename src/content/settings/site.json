@@ -1,12 +1,54 @@
 {
-  "title": "Firefly",
-  "subtitle": "流萤博客",
-  "description": "一个清新美观的个人博客",
-  "site_url": "https://YOUR_SITE.vercel.app",
-  "profile_name": "Firefly",
-  "profile_bio": "Hello, I'm Firefly.",
-  "profile_avatar": "/assets/images/avatar.webp",
-  "github": "",
-  "email": "",
-  "qq": ""
+  "basic_info": {
+    "title": "Firefly",
+    "subtitle": "流萤博客",
+    "description": "一个清新美观的个人博客",
+    "site_url": "https://my-firefly-blog.vercel.app"
+  },
+  "profile": {
+    "profile_name": "Firefly",
+    "profile_bio": "Hello, I'm Firefly.",
+    "profile_avatar": "assets/images/avatar.avif"
+  },
+  "social": {
+    "github": "",
+    "email": "",
+    "qq": ""
+  },
+  "navbar": {
+    "nav_bar_title": "Firefly",
+    "nav_bar_logo": ""
+  },
+  "theme": {
+    "theme_hue": 165,
+    "theme_default_mode": "system",
+    "post_list_layout": "list",
+    "sidebar_position": "both",
+    "sidebar_tablet_side": "left",
+    "card_border": false,
+    "card_follow_theme": false,
+    "post_list_description_lines": 2,
+    "post_per_page": 10
+  },
+  "wallpaper": {
+    "wallpaper_mode": "banner",
+    "wallpaper_url": ""
+  },
+  "pages": {
+    "page_friends": true,
+    "page_guestbook": true,
+    "page_sponsor": true,
+    "page_gallery": true,
+    "page_bangumi": true,
+    "page_anime": true,
+    "page_dynamic": true,
+    "category_bar": true,
+    "fold_article": true
+  },
+  "effects": {
+    "sakura_enable": false
+  },
+  "footer": {
+    "footer_enable": false
+  }
 }

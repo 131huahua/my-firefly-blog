@@ -33,12 +33,12 @@ export const siteConfig: SiteConfig = {
 		"静态博客",
 	],
 
-	// 主题色
+	// 主题色 — 📌 可通过后台 CMS → 站点设置 在线修改
 	themeColor: {
 		// 主题色的默认色相，范围从 0 到 360。例如：红色：0，青色：200，蓝绿色：250，粉色：345
-		hue: 165,
+		hue: settings.theme_hue ?? 165,
 		// 默认模式："light" 亮色，"dark" 暗色，"system" 跟随系统
-		defaultMode: "system",
+		defaultMode: (settings.theme_default_mode as "light" | "dark" | "system") || "system",
 	},
 
 	// 页面整体宽度（单位：rem）
@@ -46,12 +46,12 @@ export const siteConfig: SiteConfig = {
 	// 在使用单侧栏边栏时，建议调低一些宽度以获得更好的视觉效果。
 	pageWidth: 100,
 
-	// 网站Card样式配置
+	// 网站Card样式配置 — 📌 可通过后台 CMS → 站点设置 在线修改
 	card: {
 		// 是否开启卡片边框和阴影，开启后让网站更有立体感
-		border: false,
+		border: settings.card_border ?? false,
 		// 是否让卡片风格跟随主题色相
-		followTheme: false,
+		followTheme: settings.card_follow_theme ?? false,
 	},
 
 	// Favicon 配置
@@ -67,7 +67,7 @@ export const siteConfig: SiteConfig = {
 		},
 	],
 
-	// 导航栏配置
+	// 导航栏配置 — 📌 标题可通过后台 CMS → 站点设置 在线修改
 	navbar: {
 		// 导航栏Logo
 		// 支持三种类型：
@@ -77,11 +77,11 @@ export const siteConfig: SiteConfig = {
 		// 4. 网络图片: { type: "url", value: "https://example.com/logo.png", alt: "Logo" }
 		logo: {
 			type: "image",
-			value: "assets/images/firefly.png",
+			value: settings.nav_bar_logo || "assets/images/firefly.png",
 			alt: "🍀",
 		},
-		// 导航栏标题
-		title: "Firefly",
+		// 导航栏标题 — 📌 可通过后台 CMS 在线修改
+		title: settings.nav_bar_title || "Firefly",
 		// 全宽导航栏，导航栏是否占满屏幕宽度
 		widthFull: false,
 		// 导航菜单对齐方式，left：左对齐，center：居中
@@ -99,38 +99,38 @@ export const siteConfig: SiteConfig = {
 	// 示例："Asia/Shanghai", "UTC", 如果为空，则按照构建服务器的时区进行时区转换
 	timezone: "Asia/Shanghai",
 
-	// 页面开关配置 - 控制特定页面的访问权限，设为false会返回404并自动隐藏对应的导航栏菜单项
+	// 页面开关配置 — 📌 可通过后台 CMS → 站点设置 在线修改
 	pages: {
 		// 友链页面开关
-		friends: true,
+		friends: settings.page_friends ?? true,
 		// 打赏页面开关
-		sponsor: true,
+		sponsor: settings.page_sponsor ?? true,
 		// 留言板页面开关，需要配置评论系统
-		guestbook: true,
+		guestbook: settings.page_guestbook ?? true,
 		// 番组计划页面开关，含追番、游戏、书籍和音乐
-		bangumi: true,
+		bangumi: settings.page_bangumi ?? true,
 		// 相册页面开关
-		gallery: true,
+		gallery: settings.page_gallery ?? true,
 		// 追番页面开关
-		anime: true,
+		anime: settings.page_anime ?? true,
 		// 动态页面开关
-		dynamic: true,
+		dynamic: settings.page_dynamic ?? true,
 	},
 
-	// 分类导航栏开关，在首页和归档页顶部显示分类快捷导航
-	categoryBar: true,
+	// 分类导航栏开关 — 📌 可通过后台 CMS 在线修改
+	categoryBar: settings.category_bar ?? true,
 
-	// 归档页是否折叠非最新年份文章，禁用后默认展开全部年份
-	foldArticle: true,
+	// 归档页是否折叠非最新年份文章 — 📌 可通过后台 CMS 在线修改
+	foldArticle: settings.fold_article ?? true,
 
 	// 文章列表布局配置
 	postListLayout: {
-		// 默认布局模式："list" 列表模式（单列布局），"grid" 网格模式（多列布局）
-		defaultMode: "list",
+		// 默认布局模式："list" 列表模式（单列布局），"grid" 网格模式（多列布局） — 📌 可通过后台 CMS 在线修改
+		defaultMode: (settings.post_list_layout as "list" | "grid") || "list",
 		// 移动端默认布局模式，不设置则跟随 defaultMode
 		mobileDefaultMode: "grid",
-		// 文章简介显示行数，设为 0 则不截断
-		descriptionLines: 2,
+		// 文章简介显示行数，设为 0 则不截断 — 📌 可通过后台 CMS 在线修改
+		descriptionLines: settings.post_list_description_lines ?? 2,
 		// 文章卡片底部统计和发布日期是否显示图标
 		showStatsIcons: true,
 		// 标签显示位置
@@ -229,10 +229,10 @@ export const siteConfig: SiteConfig = {
 		// },
 	},
 
-	// 分页配置
+	// 分页配置 — 📌 可通过后台 CMS 在线修改
 	pagination: {
 		// 每页显示的文章数量
-		postsPerPage: 10,
+		postsPerPage: settings.post_per_page ?? 10,
 	},
 
 	// 图像优化及响应式配置
