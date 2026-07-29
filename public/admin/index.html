@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>内容管理 · Firefly Blog</title>
+  <style>
+    /* 加载动画 */
+    body { margin: 0; background: #0d1117; }
+    .loader {
+      display: flex; flex-direction: column; align-items: center;
+      justify-content: center; height: 100vh; color: #c9d1d9;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    .loader svg { animation: spin 1s linear infinite; width: 48px; height: 48px; margin-bottom: 16px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loader p { font-size: 14px; opacity: 0.7; }
+  </style>
+  <link rel="icon" href="/favicon/favicon.ico" />
+</head>
+<body>
+  <div class="loader" id="loader">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="10" stroke-dasharray="31.4 31.4" stroke-linecap="round"/>
+    </svg>
+    <p>管理后台加载中...</p>
+  </div>
+
+  <!-- Decap CMS -->
+  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <script>
+    // CMS 加载完成后隐藏加载动画
+    if (window.CMS) {
+      window.CMS.registerPreviewStyle('/admin/preview.css');
+    }
+    setTimeout(() => {
+      const loader = document.getElementById('loader');
+      if (loader) loader.style.display = 'none';
+    }, 3000);
+  </script>
+</body>
+</html>

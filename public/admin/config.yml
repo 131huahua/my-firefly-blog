@@ -1,0 +1,247 @@
+# ============================================
+# Firefly + Decap CMS 配置
+# 后台地址：你的域名/admin/
+# ============================================
+
+backend:
+  name: github
+  repo: 131huahua/firefly-blog
+  branch: main
+  # 部署到 Vercel 后，将下面改成你的域名
+  base_url: https://YOUR_SITE.vercel.app
+  auth_endpoint: api/auth
+
+# 上传的图片保存位置
+media_folder: public/assets/images
+public_folder: /assets/images
+
+# 站点地址（部署后改成你的域名）
+site_url: https://YOUR_SITE.vercel.app
+display_url: https://YOUR_SITE.vercel.app
+
+# 语言
+locale: zh_Hans
+
+# Logo
+logo_url: /assets/images/firefly.png
+
+# ============================================
+# 文章集合
+# ============================================
+collections:
+  - name: posts
+    label: 📝 文章
+    label_singular: 文章
+    folder: src/content/posts
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}} — {{published | date('YYYY-MM-DD')}}"
+    editor:
+      preview: false
+    fields:
+      - label: 标题
+        name: title
+        widget: string
+        hint: 文章标题
+      - label: 发布日期
+        name: published
+        widget: datetime
+        default: "{{now}}"
+        format: "YYYY-MM-DD HH:mm:ss"
+        date_format: "YYYY-MM-DD"
+        time_format: "HH:mm:ss"
+        picker_utc: false
+      - label: 更新日期
+        name: updated
+        widget: datetime
+        required: false
+        format: "YYYY-MM-DD HH:mm:ss"
+        date_format: "YYYY-MM-DD"
+        time_format: "HH:mm:ss"
+        picker_utc: false
+      - label: 草稿
+        name: draft
+        widget: boolean
+        default: false
+        hint: 草稿不会出现在博客中
+      - label: 摘要
+        name: description
+        widget: text
+        required: false
+        hint: 文章简短描述，用于列表展示
+      - label: 封面图
+        name: image
+        widget: image
+        required: false
+        hint: "留空使用随机图，或输入 'api' 使用随机API"
+      - label: 标签
+        name: tags
+        widget: list
+        required: false
+        default: []
+        hint: 按回车添加标签
+      - label: 分类
+        name: category
+        widget: string
+        required: false
+        hint: 文章分类，留空则无分类
+      - label: 语言
+        name: lang
+        widget: select
+        required: false
+        default: ""
+        options:
+          - { label: "跟随站点设置", value: "" }
+          - { label: "简体中文", value: "zh-CN" }
+          - { label: "繁体中文", value: "zh-TW" }
+          - { label: "English", value: "en" }
+          - { label: "日本語", value: "ja" }
+          - { label: "한국어", value: "ko" }
+          - { label: "Русский", value: "ru" }
+      - label: 置顶
+        name: pinned
+        widget: boolean
+        default: false
+      - label: 允许评论
+        name: comment
+        widget: boolean
+        default: true
+      - label: 作者
+        name: author
+        widget: string
+        required: false
+      - label: 原文链接
+        name: sourceLink
+        widget: string
+        required: false
+      - label: 许可证名称
+        name: licenseName
+        widget: string
+        required: false
+      - label: 许可证链接
+        name: licenseUrl
+        widget: string
+        required: false
+      - label: 加密密码
+        name: password
+        widget: string
+        required: false
+        hint: 设置后文章需密码访问，留空则不加密
+      - label: 密码提示
+        name: passwordHint
+        widget: string
+        required: false
+      - label: 正文
+        name: body
+        widget: markdown
+        hint: 支持 Markdown 语法、代码高亮、Mermaid 图表等
+
+  # ============================================
+  # 独立页面（关于、友链、留言板）
+  # ============================================
+  - name: spec
+    label: 📄 独立页面
+    label_singular: 页面
+    folder: src/content/spec
+    create: true
+    extension: md
+    editor:
+      preview: false
+    fields:
+      - label: 标题
+        name: title
+        widget: string
+        required: false
+        hint: "页面标题（可选，Firefly 会在页面中自动显示）"
+      - label: 内容
+        name: body
+        widget: markdown
+
+  # ============================================
+  # 动态（说说/碎碎念）
+  # ============================================
+  - name: dynamic
+    label: 💬 动态
+    label_singular: 动态
+    folder: src/content/dynamic
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{hour}}{{minute}}{{second}}"
+    summary: "{{published | date('YYYY-MM-DD HH:mm')}} — {{body | truncate(40)}}"
+    editor:
+      preview: false
+    fields:
+      - label: 发布时间
+        name: published
+        widget: datetime
+        default: "{{now}}"
+        format: "YYYY-MM-DD HH:mm:ss"
+        date_format: "YYYY-MM-DD"
+        time_format: "HH:mm:ss"
+        picker_utc: false
+      - label: 置顶
+        name: pinned
+        widget: boolean
+        default: false
+      - label: 位置
+        name: location
+        widget: string
+        required: false
+      - label: 内容
+        name: body
+        widget: markdown
+        hint: 支持 Markdown，可以发图片和链接
+
+  # ============================================
+  # 站点设置
+  # ============================================
+  - name: settings
+    label: ⚙️ 站点设置
+    editor:
+      preview: false
+    files:
+      - name: site
+        label: 基本信息
+        file: src/content/settings/site.json
+        fields:
+          - label: 站点标题
+            name: title
+            widget: string
+            hint: 显示在浏览器标签页的标题
+          - label: 站点副标题
+            name: subtitle
+            widget: string
+            required: false
+          - label: 站点描述
+            name: description
+            widget: text
+            required: false
+          - label: 站点URL
+            name: site_url
+            widget: string
+            hint: "完整的站点地址，如 https://example.com"
+          - label: 博主名字
+            name: profile_name
+            widget: string
+            hint: 显示在侧边栏的名字
+          - label: 个人简介
+            name: profile_bio
+            widget: text
+            required: false
+            hint: 侧边栏签名
+          - label: 头像
+            name: profile_avatar
+            widget: image
+            required: false
+            hint: 上传到资源库后选择
+          - label: GitHub 用户名
+            name: github
+            widget: string
+            required: false
+          - label: 邮箱
+            name: email
+            widget: string
+            required: false
+          - label: QQ群号
+            name: qq
+            widget: string
+            required: false

@@ -1,0 +1,12 @@
+{
+  "title": "Firefly",
+  "subtitle": "流萤博客",
+  "description": "一个清新美观的个人博客",
+  "site_url": "https://YOUR_SITE.vercel.app",
+  "profile_name": "Firefly",
+  "profile_bio": "Hello, I'm Firefly.",
+  "profile_avatar": "/assets/images/avatar.webp",
+  "github": "",
+  "email": "",
+  "qq": ""
+}
