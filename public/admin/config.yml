@@ -8,15 +8,15 @@ backend:
   repo: 131huahua/my-firefly-blog
   branch: master
   # 部署到 Vercel 后改成你的域名
-  base_url: https://zhangziyi.cc
+  base_url: https://my-firefly-blog-teal.vercel.app
   auth_endpoint: api/auth
 
 # 上传图片保存位置
 media_folder: public/assets/images
 public_folder: /assets/images
 
-site_url: https://zhangziyi.cc
-display_url: https://zhangziyi.cc
+site_url: https://my-firefly-blog-teal.vercel.app
+display_url: https://my-firefly-blog-teal.vercel.app
 
 locale: zh_Hans
 logo_url: /assets/images/firefly.png
