@@ -5,7 +5,7 @@
 
 backend:
   name: github
-  repo: 131huahua/firefly-blog
+  repo: 131huahua/my-firefly-blog
   branch: main
   # 部署到 Vercel 后，将下面改成你的域名
   base_url: https://YOUR_SITE.vercel.app
